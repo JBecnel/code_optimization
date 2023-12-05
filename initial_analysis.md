@@ -21,3 +21,6 @@ The initial analysis of function_j shows the following:
 - **Do the same for alpha and gamma** as the above suggests
 - There are several calls to the ```pow``` function that use an integer as the exponent. The ```pow``` is O(log(n)), I believe. However, for integers we can reduce this to O(1) by using simple arithmetic.  **Change calls to pow to use multiplication and/or division when the exponent is an integer**.
 
+## PERF and GPROF
+Running PERF and GPROF was not as insightful as I hoped. 
+

@@ -1,0 +1,60 @@
+        -:    0:Source:test_j.c
+        -:    0:Graph:test_j_original-test_j.gcno
+        -:    0:Data:-
+        -:    0:Runs:0
+        -:    1:#include <stdio.h>
+        -:    2:#include <math.h>
+        -:    3:#define MAX(x, y) (((x) > (y)) ? (x) : (y))
+        -:    4:
+        -:    5:// gcc -lm test_j.c -o test_j
+        -:    6:
+    #####:    7:double function_j(double f, double fp, double fptilde) {
+        -:    8: 
+    #####:    9:   double a  = 0.0081;
+    #####:   10:   double b  = 0.6;
+    #####:   11:   double g  = 9.807;
+    #####:   12:   double pi = 4.*atan(1.);
+        -:   13:
+    #####:   14:   double fptildemin = (1.0/2.0/pi) * pow((4.0 * b / 5.0), (1.0/4.0));
+        -:   15:
+    #####:   16:   double gC = 5.87;
+    #####:   17:   double aC = 0.0317;
+        -:   18:
+    #####:   19:   double aX  = (log(a)-log(aC))/log(fptildemin);
+    #####:   20:   double gX  = -log(gC)/log(fptildemin);
+        -:   21:
+    #####:   22:   double saC = 0.0547;
+    #####:   23:   double saX = 0.32;
+        -:   24:
+    #####:   25:   double sbC = 0.0783;
+    #####:   26:   double sbX = 0.16;
+        -:   27:
+    #####:   28:   double fpt = MAX(fptilde, fptildemin);
+        -:   29:
+    #####:   30:   double alpha   = aC  * pow(fpt, aX);
+    #####:   31:   double gamma   = gC  * pow(fpt, gX);
+    #####:   32:   double sigma_a = saC * pow(fpt, saX);
+    #####:   33:   double sigma_b = sbC * pow(fpt, sbX);
+    #####:   34:   double exp1arg = -1.25 * pow((f/fp),-4);
+    #####:   35:   double sigma   = (f <= fp) * sigma_a + (f > fp) * sigma_b;
+        -:   36:
+    #####:   37:   double exp2arg = -0.5 * pow((f-fp)/(sigma*fp), 2);
+        -:   38:
+    #####:   39:   double S = alpha * pow(g, 2) * pow((2*pi), -4) * pow(f,-5) * exp(exp1arg) * pow(gamma, exp(exp2arg));
+        -:   40:
+    #####:   41:   return S;
+        -:   42:}
+        -:   43:
+    #####:   44:main() {
+        -:   45:
+        -:   46:  double S, f, fp, fptilde;
+        -:   47:
+    #####:   48:  for (f = -5.; f <= 5.; f += 0.01) {
+    #####:   49:    for (fp = 0.; fp <= 10.; fp += 0.01) {
+    #####:   50:      for (fptilde = 0.; fptilde <= 10.; fptilde += 0.01) {
+    #####:   51:        S = function_j(f, fp, fptilde);
+        -:   52:      }
+        -:   53:    }
+        -:   54:  }
+        -:   55:
+        -:   56:}
