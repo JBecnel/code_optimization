@@ -24,7 +24,7 @@ The values of  *fp* are from {0, 0.01, ..., 9.99, 10.0}.
 Running the two loops we have roughly 1000 x 1000 = 1,000,000 combinations. 
 However, taking all possible ratios of values form the two sets leaves us with only about 1000 possibilities as many ratios are repeated (e.g. 2/1 is the same as 4/2). 
 
-Thus it is possible to get further **significant** performance improvements by making the inner loop iterate over the 1000 unique values of *f/fp* and have the most inner loop iterate over *f*. This would reduce the number of calls to ```exp``` drastically. The inner most loop would simply do the last multiplication factor for *f^-5*, with the middle loop computing the two ```exp```.
+Thus it is possible to get further **significant** performance improvements by making the inner loop iterate over the 325966 unique values of *f/fp* and have the most inner loop iterate over *f*. This would reduce the number of calls to ```exp``` drastically. The inner most loop would simply do the last multiplication factor for *f^-5*, with the middle loop computing the two ```exp```.
 
 # Lessons Learned
 
