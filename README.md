@@ -1,4 +1,4 @@
-The goal of this repo is code optimization.
+The goal of this repo is code optimization of the code contained in [test_j.c](./test_j.c).
 
 A summary of code analysis can be found in [Initial Analysis](./initial_analysis.md).
 
